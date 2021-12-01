@@ -28,7 +28,7 @@
 <script></script>
 
 <!-- load polyfill, local copy first for local testing -->
-<script src="extra/adapter.js" type="text/javascript"></script>
+<!--<script src="extra/adapter.js" type="text/javascript"></script>-->
 <script
   src="https://webrtc.github.io/adapter/adapter-latest.js"
   type="text/javascript"></script>
@@ -134,6 +134,9 @@ function connect() {
   signalingChannel.connect(errorCB);
 }
 
+function attachMediaStream(videoElement,stream) {
+  videoElement.srcObject = stream;
+}
 
 // This routine sends a message on the signaling channel, either
 // by explicit call or by the user clicking on the Send button.
@@ -161,7 +164,7 @@ function send(msg) {
 /////////////////////////////
 
 function getMedia() {
-  getUserMedia({"audio":true, "video":true},
+  navigator.getUserMedia({"audio":true, "video":true},
                gotUserMedia, didntGetUserMedia);
 }
 
